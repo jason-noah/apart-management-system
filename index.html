@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            margin: 5px;
+            border-radius: 7px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        .nav-comp {
+            cursor: pointer;
+            color: #ecf0f1;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            border-radius: 7px;
+            margin: 5px;
+            width: calc(100% - 10px);
+            height: 325px;
+            background-size: cover;
+            background-position: center right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: background-position 1s ease, opacity 1s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(240, 248, 255, 1), rgba(240, 248, 255, 0));
+            z-index: 1;
+        }
+        .container-opposite {
+            background-position: center left;
+        }
+        .container-opposite::before {
+            background: linear-gradient(to left, rgba(240, 248, 255, 1), rgba(240, 248, 255, 0));
+        }
+        .content-left, .content-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 20px;
+            background: rgba(240, 248, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            max-width: 40%;
+        }
+        .content-left {
+            left: 5%;
+        }
+        .content-right {
+            right: 5%;
+        }
+    </style>
+    <title>Apartment Management System</title>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-comp" style="margin-left: auto;">
+            Login/Register
+        </div>
+    </div>
+
+    <div class="container" style="background-image: url('images/Lounge.jpg');">
+        <div class="content-left">
+            <h2>About Us</h2>
+            <p>Welcome to our apartment management system. We are dedicated to providing the best service to our residents.</p>
+        </div>
+    </div>
+    <div class="container container-opposite" style="background-image: url('images/Interior.avif');">
+        <div class="content-right">
+            <h2>Services</h2>
+            <p>We offer a variety of services including maintenance, security, and community events.</p>
+        </div>
+    </div>
+    <div class="container" style="background-image: url('images/Hall_Cyber.avif');">
+        <div class="content-left">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to us at contact@apartment.com or call us at (123) 456-7890.</p>
+        </div>
+    </div>
+    <div class="container container-opposite" style="background-image: url('images/ComeOn.webp');">
+        <div class="content-right">
+            <h2>News</h2>
+            <p>Stay updated with the latest news and announcements from our community.</p>
+        </div>
+    </div>
+    <div class="container" style="background-image: url('images/Beauty.jpg');">
+        <div class="content-left">
+            <h2>Events</h2>
+            <p>Join us for upcoming events and activities. Check out the events calendar for more information.</p>
+        </div>
+    </div>
+</body>
+</html>
