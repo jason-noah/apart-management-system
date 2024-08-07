@@ -78,20 +78,27 @@
             position: relative;
             max-width: 100%;
             margin: 20px auto;
+            overflow: hidden;
+        }
+        .slide-wrapper {
+            display: flex;
+            transition: transform 1s ease;
         }
         .mySlides {
-            display: none;
-            position: relative;
+            min-width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
         }
         .slide-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
             background: rgba(0, 0, 0, 0.5);
             color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             max-width: 40%;
+            margin: 20px;
         }
         .prev, .next {
             cursor: pointer;
@@ -110,6 +117,9 @@
         .next {
             right: 0;
             border-radius: 3px 0 0 3px;
+        }
+        .prev {
+            left: 0;
         }
         .prev:hover, .next:hover {
             background-color: rgba(0,0,0,0.8);
@@ -150,28 +160,30 @@
     </div>
 
     <div class="slideshow-container">
-        <div class="mySlides" style="background-image: url('images/Hall_Cyber.avif'); height: 500px; background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <h2>Modern Themed Rooms</h2>
-                <p>Experience the contemporary elegance of our modern themed rooms.</p>
+        <div class="slide-wrapper">
+            <div class="mySlides" style="background-image: url('images/Hall_Cyber.avif');">
+                <div class="slide-content">
+                    <h2>Modern Themed Rooms</h2>
+                    <p>Experience the contemporary elegance of our modern themed rooms.</p>
+                </div>
             </div>
-        </div>
-        <div class="mySlides" style="background-image: url('images/gym_rat.webp'); height: 500px; background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <h2>State-of-the-Art Gyms</h2>
-                <p>Stay fit and healthy with our fully equipped modern gyms.</p>
+            <div class="mySlides" style="background-image: url('images/gym_rat.webp');">
+                <div class="slide-content">
+                    <h2>State-of-the-Art Gyms</h2>
+                    <p>Stay fit and healthy with our fully equipped modern gyms.</p>
+                </div>
             </div>
-        </div>
-        <div class="mySlides" style="background-image: url('images/ki.webp'); height: 500px; background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <h2>Modern Kitchens</h2>
-                <p>Cook and entertain in our stylish and fully-equipped modern kitchens.</p>
+            <div class="mySlides" style="background-image: url('images/ki.webp');">
+                <div class="slide-content">
+                    <h2>Modern Kitchens</h2>
+                    <p>Cook and entertain in our stylish and fully-equipped modern kitchens.</p>
+                </div>
             </div>
-        </div>
-        <div class="mySlides" style="background-image: url('images/spacious_balcony.jpg'); height: 500px; background-size: cover; background-position: center;">
-            <div class="slide-content">
-                <h2>Spacious Balconies</h2>
-                <p>Relax and enjoy the view from our spacious balconies.</p>
+            <div class="mySlides" style="background-image: url('images/spacious_balcony.jpg');">
+                <div class="slide-content">
+                    <h2>Spacious Balconies</h2>
+                    <p>Relax and enjoy the view from our spacious balconies.</p>
+                </div>
             </div>
         </div>
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -189,22 +201,33 @@
 
     <script>
         let slideIndex = 0;
-        showSlides();
+        const slides = document.querySelector('.slide-wrapper');
+        const slideItems = document.querySelectorAll('.mySlides');
 
         function showSlides() {
-            let slides = document.getElementsByClassName("mySlides");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex - 1].style.display = "block";
+            if (slideIndex >= slideItems.length) {
+                slideIndex = 0;
+            }
+            updateSlides();
             setTimeout(showSlides, 5000); // Change image every 5 seconds
         }
 
         function plusSlides(n) {
-            showSlides(slideIndex += n);
+            slideIndex += n;
+            if (slideIndex >= slideItems.length) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = slideItems.length - 1;
+            }
+            updateSlides();
         }
+
+        function updateSlides() {
+            slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+        }
+
+        document.addEventListener('DOMContentLoaded', showSlides);
     </script>
 </body>
 </html>
